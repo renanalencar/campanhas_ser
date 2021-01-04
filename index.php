@@ -1,1 +1,3 @@
-<?php include_once("faq.html"); ?>
+<?php 
+	include_once("faq.html"); 
+?>
