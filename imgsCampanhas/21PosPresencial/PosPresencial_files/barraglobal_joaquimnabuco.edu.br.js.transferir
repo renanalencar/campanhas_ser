@@ -1,0 +1,15 @@
+var barraMatriz = [
+    [
+        ['Instituição','http://www.joaquimnabuco.edu.br/institucional', false],
+        ['Graduação','http://vestibular.joaquimnabuco.edu.br',false],
+        ['Pós-Graduação','http://pos.joaquimnabuco.edu.br',false],
+        ['Técnicos','http://tecnico.joaquimnabuco.edu.br',false],
+        ['Congressos','https://eventos.sereduc.com',false],
+        ['Concursos','https://cursoslivres.joaquimnabuco.edu.br',false],
+        ['Idiomas','https://cursoslivres.joaquimnabuco.edu.br',false],
+        ['Profissionalizantes','https://cursoslivres.joaquimnabuco.edu.br',false]
+    ],
+    ['http://www.joaquimnabuco.edu.br/contato/fale-conosco'],
+	[false]
+]
+montarBarraGlobal(barraMatriz);

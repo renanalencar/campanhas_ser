@@ -1,0 +1,42 @@
+﻿@import url("/PSWidgets/Theme.PSWidgets_v2.css?17787");
+
+.Application_Menu, .menuabsolute a {
+    background:#ad3592 !important;
+    opacity: 1;
+}
+.Menu_TopMenus{
+    border-bottom-color:#771761;
+    background:#ad3592 !important;
+}
+.Menu_TopMenus .Application_Menu .Menu_TopMenu>div>a::before {
+    box-shadow: 1px 0px 0px #E07FCA;
+    border-left: solid 1px #180213;
+}
+.descricao_abas .abas a.ativo, .selo{
+    background:#447fc0;
+}
+.selo:before, .selo:after { border-top-color: #447fc0 }
+.title_box{
+    color:#fff;
+    border-bottom-color:#5F2351;
+    background-color: #AD3592;
+}
+/* Mesmas cores da Nassau */
+.menu_interno .Menu_TopMenu a:link,
+.menu_interno .Menu_TopMenu a:visited,
+.menu_interno .Menu_TopMenu a {
+    border-top:7px solid #447fc0;
+}
+.menu_interno .Menu_DropDownArrow {
+    border-top-color: #447fc0;
+}
+.Menu_DropDownPanel {
+    background: #6D305F !important;
+}
+.Menu_DropDownPanel a {
+    box-shadow: 0px 1px 0px #E07FCA !important;
+    border-bottom: solid 1px #180213 !important;
+}
+.Menu_DropDownPanel .dropdown-header {
+     background:#286cba !important;color:#c8e3ff !important;
+}

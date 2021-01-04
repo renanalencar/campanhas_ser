@@ -1,0 +1,47 @@
+(function() {
+  if (document.body.style) {
+    document.body.style.position = 'relative';
+    document.body.style.zIndex = 0;
+  }
+
+  else {
+    document.body.style = "position: relative; z-index: 0";
+  }
+
+  var wallpaper = document.createElement("div");
+
+  var wallpaperLink = document.createElement("a");
+
+  wallpaperLink.setAttribute("id", "WallpaperAd");
+  wallpaperLink.setAttribute("href", "http://ads.sereduc.com/servlet/click/zone?zid=59&cid=3425&mid=3565&pid=0&sid=1&uuid=e4cc22b69289a9615ff0c4d4b3a7b7b6&ip=201.159.158.206&default=false&random=19872447&timestamp=20200712230905&test=false&resolution=2560x1080&referrer=https%3A%2F%2Fpos.joaquimnabuco.edu.br%2F&redirect=https%3A%2F%2Fpos.joaquimnabuco.edu.br%2F");
+  wallpaperLink.setAttribute("rel", "nofollow");
+  wallpaperLink.setAttribute("style", "background: url('https://ads.sereduc.com/servlet/files/4186') no-repeat 50% 0px transparent; width: 100%; height: 1050px; position: absolute; left: 0; top: 0; z-index: -1");
+  wallpaperLink.setAttribute("target", "_blank");
+
+  wallpaper.appendChild(wallpaperLink);
+
+  if (0 > 0) {
+    var pushdown = document.createElement("div");
+    pushdown.setAttribute("id", "WallpaperPushdown");
+    pushdown.setAttribute("style", "width: 100%; height: 0px; position: relative; z-index: 0; cursor: hand; cursor: pointer");
+    pushdown.onclick = function() { document.getElementById('WallpaperAd').click(); };
+    document.body.insertBefore(pushdown, document.body.firstChild);
+  }
+
+  document.body.appendChild(wallpaper);
+})();
+
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript'; s.async = true; s.src = 'https://ads.sereduc.com/js/interactive1.js';
+  var x = document.getElementsByTagName('script')[0];
+  x.parentNode.insertBefore(s, x);
+})();
+
+(function(now) {
+  var loader = function() {
+    var ai = new AdvertInteractive('WallpaperAd', '', 'https://ads.sereduc.com/servlet/events?zid=59&cid=3425&mid=3565&pid=0&sid=1&uuid=e4cc22b69289a9615ff0c4d4b3a7b7b6&type=[type]&name=[name]&ip=201.159.158.206&random=19872447&timestamp=20200712230905&referrer=https%3A%2F%2Fpos.joaquimnabuco.edu.br%2F', 'https://ads.sereduc.com/servlet/events?type=[type]&name=[name]&ip=201.159.158.206&uuid=e4cc22b69289a9615ff0c4d4b3a7b7b6&random=19872447&timestamp=20200712230905&referrer=https%3A%2F%2Fpos.joaquimnabuco.edu.br%2F', 'zid=59&cid=3425&mid=3565&pid=0&sid=1', now);
+    ai.listen(ai, document.getElementById('WallpaperPushdown'));
+  };
+  if (typeof(AdvertInteractive) !== 'undefined') { loader(); } else { window.addEventListener('load', loader); }
+})(new Date().getTime());

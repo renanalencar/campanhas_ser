@@ -1,0 +1,31 @@
+﻿.LeadForm .ColLeft,
+.LeadForm .ColRight {
+    display: inline-block;
+    width: 49.0196078431373%;
+    margin-bottom: 10px;
+}
+.LeadForm .ColRight {
+    margin-left: 1.96078431372549%;
+}
+.LeadForm .ColFull {
+    display: block;
+    margin-bottom: 10px;
+}
+.LeadForm label,
+.LeadForm input,
+.LeadForm select,
+.LeadForm textarea {
+    display: block;
+    width: 100%;
+}
+.LeadForm textarea {
+    resize: vertical;
+}
+.LeadForm input.Button {
+    width: initial;
+    margin-left: 0;
+    margin-right: 10px;
+}
+.LeadForm label {
+    color: #888;
+}

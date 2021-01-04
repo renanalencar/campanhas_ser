@@ -1,0 +1,125 @@
+﻿/*!
+ * Salesforce Lead Form
+ */
+OSSalesforceLeadForm = {
+    validate: {
+        name: function( str ) {
+            str = str.replace( /\s+/g, '' );
+            return str.length > 2;
+        },
+        phone: function( str ) {
+            str = str.replace( /[\s()\[\]\-.\\\/]/g, '' );
+            return /^\+?[0-9]{8,16}$/.test( str );
+        },
+        email: function( str ) {
+            return /^[a-z0-9._%+-]+@[a-z0-9.-]+(\.[a-z]+)+$/.test( str );
+        },
+        description: function( str ) {
+            str = str.replace( /^\s+|\s+$/g, '' );
+            return str.length > 4;
+        },
+        select: function( val ) {
+            return val && val != '0' && val != 0 && val != '' && val != '__ossli_0';
+        }
+    },
+    validateForm: function( runtimeId ) {
+        var inputs = $( '#' + runtimeId + ' :input' );
+        var formValid = true;
+        
+        inputs.each( function() {
+            var input = $( this );
+            var inputValue = input.val();
+            var inputValid = true;
+            
+            if ( input.prop( 'tagName' ).toLowerCase() == 'select' ) {
+                inputValid = OSSalesforceLeadForm.validate.select( inputValue );
+            }
+            else {
+                switch( input.attr( 'name' ).toLowerCase() ) {
+                    case 'name':
+                    case 'first_name':
+                    case 'middle_name':
+                    case 'last_name':
+                        inputValid = OSSalesforceLeadForm.validate.name( inputValue );
+                        break;
+                    case 'mobile':
+                    case 'phone':
+                        inputValid = OSSalesforceLeadForm.validate.phone( inputValue );
+                        break;
+                    case 'email':
+                        inputValid = OSSalesforceLeadForm.validate.email( inputValue );
+                        break;
+                    case 'description':
+                        inputValid = OSSalesforceLeadForm.validate.description( inputValue );
+                        break;
+                }
+            }
+            
+            if ( inputValid ) {
+                input.removeClass( 'Not_Valid' );
+            }
+            else {
+                input.addClass( 'Not_Valid' );
+            }
+
+            formValid &= inputValid;
+        } );
+        
+        return !!formValid;
+    },
+    createFormMasks: function( runtimeId ) {
+        var inputs = $( '#' + runtimeId + ' :input' );
+        
+        inputs.each( function() {
+            var input = $( this );
+            switch( input.attr( 'name' ).toLowerCase() ) {
+                case 'mobile':
+                case 'phone':
+                    input.inputmask( {
+                        mask: '(99) 9999[9]-9999',
+                        removeMaskOnSubmit: true
+                    } );
+                    break;
+                case 'email':
+                    input.inputmask( {
+                        mask: '*{1,200}',
+                        greedy: false,
+                        showMaskOnHover: false,
+                        showMaskOnFocus: false,
+                        onBeforePaste: function( pastedValue, opts ) {
+                            pastedValue = pastedValue.toLowerCase();
+                            return pastedValue.replace( 'mailto:', '' );
+                        },
+                        definitions: {
+                            '*': {
+                                validator: '[A-Za-z0-9._%@+-]',
+                                cardinality: 1,
+                                casing: 'lower'
+                            }
+                        }
+                    } );
+                    break;
+            }
+        } );
+    },
+    submitForm: function( runtimeId, submitNotifyId, enableValidations ) {
+             
+        if ( enableValidations && ! OSSalesforceLeadForm.validateForm( runtimeId ) ) {
+            return;
+        }
+                
+        var data = $( '#' + runtimeId + ' :input' ).serialize();
+        OsNotifyWidget( submitNotifyId, data );
+        
+        $( '#' + runtimeId + ' .LeadForm' ).hide();
+        salesForceFechar();
+    },
+    buildForm: function( runtimeId, submitNotifyId, enableValidations, enableMasks ) {
+        var submit = $( '#' + runtimeId ).find( 'input[type=submit],button[type=submit]' );
+        submit.attr( 'onclick', 'OSSalesforceLeadForm.submitForm("'+runtimeId+'","'+submitNotifyId+'",'+(enableValidations?'true':'false')+');return false;' );
+        
+        if ( enableMasks ) {
+            OSSalesforceLeadForm.createFormMasks( runtimeId );
+        }
+    }
+};

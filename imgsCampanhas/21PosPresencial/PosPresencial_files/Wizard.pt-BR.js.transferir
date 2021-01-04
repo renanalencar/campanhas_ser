@@ -1,0 +1,30 @@
+﻿$(document).ready(function(){
+    
+    InitWizard();
+    
+    osAjaxBackend.BindAfterAjaxRequest(InitWizard);
+    
+});
+
+
+
+var InitWizard = function(){
+    
+    $(".phone .WizardParent .WizardStep, .mini .WizardParent .WizardStep").each(function(){    
+    
+        var that = $(this);
+    
+        if(that.children().length == 0) {
+            that.text(that.index()+1);
+        } else {
+            var elem = that.find("a, div, span, label");
+            
+            if(elem.children().length == 0) {
+               elem.text(that.index()+1);
+            } else {
+                elem.find("a, div, span, label").text(that.index()+1);
+            }
+        }
+    });
+    
+}
