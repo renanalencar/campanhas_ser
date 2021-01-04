@@ -1,3 +1,3 @@
 <?php 
-	include_once("faq.html"); 
+	include_once("home.html"); 
 ?>
